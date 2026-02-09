@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" fill="none">
+  <style>
+    .text { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 32px; fill: #1a1a1a; }
+    .highlight { fill: #FF6B35; }
+  </style>
+
+  <g transform="translate(10, 5)">
+    <path d="M5 40C5 40 5 10 25 10C35 10 45 15 45 15V45C45 45 35 40 25 40C15 40 5 40 5 40Z" fill="#003366"/>
+    <path d="M85 40C85 40 85 10 65 10C55 10 45 15 45 15V45C45 45 55 40 65 40C75 40 85 40 85 40Z" fill="#FF6B35"/>
+    
+    <rect x="42" y="12" width="6" height="35" rx="1" fill="#ffffff"/>
+    <rect x="40" y="8" width="10" height="3" rx="1" fill="#003366"/>
+    <rect x="40" y="46" width="10" height="3" rx="1" fill="#003366"/>
+  </g>
+
+  <text x="100" y="42" class="text">Law<tspan class="highlight">book</tspan></text>
+</svg>

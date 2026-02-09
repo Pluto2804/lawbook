@@ -1,0 +1,65 @@
+{{define "title"}}Student Dashboard{{end}}
+
+{{define "main"}}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Student Dashboard</h1>
+        <p>Welcome back, {{.User.Name}}! Ready to learn?</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">Moot Sessions</span>
+            <span class="stat-value">0</span>
+            <span class="stat-subtext">Completed</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Average Score</span>
+            <span class="stat-value">-</span>
+            <span class="stat-subtext">Not Yet Available</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Skill Level</span>
+            <span class="stat-value" style="font-size: 2rem;">Beginner</span>
+            <span class="stat-subtext">Keep Practicing!</span>
+        </div>
+    </div>
+
+    <div class="section-title">What would you like to do?</div>
+    
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div>
+                <div class="tool-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><rect x="6" y="21" width="12" height="3"/><path d="M6 3l-3 7h6l-3-7z"/><path d="M18 3l-3 7h6l-3-7z"/><path d="M6 10v6"/><path d="M18 10v6"/></svg>
+                </div>
+                <h3>Start Moot Court</h3>
+                <p>Practice arguments with AI judges and opponents in real-time.</p>
+            </div>
+            <a href="/moot/setup" class="btn btn-primary">Begin Session</a>
+        </div>
+
+        <div class="tool-card">
+            <div>
+                <div class="tool-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <h3>View Progress</h3>
+                <p>Track your performance and improvement over time.</p>
+            </div>
+            <span class="btn-disabled">Coming Soon</span>
+        </div>
+
+        <div class="tool-card">
+            <div>
+                <div class="tool-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <h3>Practice Cases</h3>
+                <p>Browse specific case scenarios to sharpen your skills.</p>
+            </div>
+            <span class="btn-disabled">Coming Soon</span>
+        </div>
+    </div>
+</div>
+{{end}}

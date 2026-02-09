@@ -1,0 +1,39 @@
+{{define "nav"}}
+<div class="navbar">
+    <div class="nav-brand">
+        <a href="/">
+            <img src="/static/img/logo.svg" alt="Lawbook Logo" class="logo">
+            
+        </a>
+    </div>
+    
+    <ul class="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        
+        {{if .IsAuthenticated}}
+            {{if .User}}
+                {{if eq .User.Role "student"}}
+                    <li><a href="/student/dashboard">Dashboard</a></li>
+                    <li><a href="/moot/setup">Moot Court</a></li>
+                {{else if eq .User.Role "lawyer"}}
+                    <li><a href="/lawyer/dashboard">Dashboard</a></li>
+                    <li><a href="/moot/setup">Moot Court</a></li>
+                {{else if eq .User.Role "recruiter"}}
+                    <li><a href="/recruiter/dashboard">Dashboard</a></li>
+                {{end}}
+            {{end}}
+            <li><a href="/user/account">My Account</a></li>
+            <li>
+                <form action="/user/logout" method="POST" style="display: inline;">
+                    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            </li>
+        {{else}}
+            <li><a href="/user/signup">Sign Up</a></li>
+            <li><a href="/user/login">Login</a></li>
+        {{end}}
+    </ul>
+</div>
+{{end}}

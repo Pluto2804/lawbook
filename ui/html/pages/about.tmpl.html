@@ -1,0 +1,108 @@
+{{define "title"}}About Lawbook{{end}}
+
+{{define "main"}}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<div class="about-page-wrapper">
+    
+    <section class="about-hero">
+        <div class="about-container">
+            <h1>Redefining Legal Education</h1>
+            <p>Lawbook is India's premier platform bridging the gap between legal theory and practice through interactive AI technology.</p>
+        </div>
+    </section>
+    
+    <div class="about-container">
+        
+        <h2 class="section-heading">What We Offer</h2>
+        <div class="offering-grid">
+            
+            <div class="offering-card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </div>
+                <h3>For Students</h3>
+                <ul class="feature-list">
+                    <li>Virtual moot court simulations</li>
+                    <li>AI-powered judge interactions</li>
+                    <li>Real case scenarios</li>
+                    <li>Build your legal portfolio</li>
+                </ul>
+            </div>
+            
+            <div class="offering-card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                </div>
+                <h3>For Lawyers</h3>
+                <ul class="feature-list">
+                    <li>Sharpen advocacy skills</li>
+                    <li>AI performance evaluations</li>
+                    <li>Showcase skills to recruiters</li>
+                    <li>Track improvement metrics</li>
+                </ul>
+            </div>
+            
+            <div class="offering-card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <h3>For Recruiters</h3>
+                <ul class="feature-list">
+                    <li>Access performance data</li>
+                    <li>Evaluate candidates objectively</li>
+                    <li>Filter by legal skills</li>
+                    <li>Data-driven hiring decisions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="steps-section">
+        <div class="about-container">
+            <h2 class="section-heading">How It Works</h2>
+            <div class="steps-grid">
+                <div>
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Sign Up</h4>
+                        <p class="text-muted">Choose your role</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Practice</h4>
+                        <p class="text-muted">Moot courts with AI</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Get Evaluated</h4>
+                        <p class="text-muted">Detailed analytics</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Connect</h4>
+                        <p class="text-muted">Showcase talent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="cta-container">
+        <h2>Ready to Begin?</h2>
+        <br>
+        {{if not .IsAuthenticated}}
+            <a href="/user/signup" class="btn-primary">Get Started Today</a>
+        {{else}}
+            <a href="/moot/setup" class="btn-primary">Start Practicing</a>
+        {{end}}
+    </div>
+
+</div>
+{{end}}

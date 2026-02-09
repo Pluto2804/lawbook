@@ -1,0 +1,82 @@
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+<div class="home-container">
+    
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Empower Your <span class="text-highlight">Legal Journey</span></h1>
+            <p class="hero-subtext">
+                Modern, interactive, and fun law learning for all ages.<br>
+                Experience law like never before.
+            </p>
+            
+            <div class="btn-group">
+                {{if not .IsAuthenticated}}
+                    <a href="/user/signup" class="btn btn-primary">Get Started</a>
+                    <a href="/about" class="btn btn-secondary">Learn More</a>
+                {{else}}
+                    {{if .User}}
+                        {{if eq .User.Role "student"}}
+                            <a href="/student/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                        {{else if eq .User.Role "lawyer"}}
+                            <a href="/lawyer/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                        {{else if eq .User.Role "recruiter"}}
+                            <a href="/recruiter/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                        {{end}}
+                    {{end}}
+                {{end}}
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="/static/img/hero.svg" alt="Legal Justice">
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Legal Magic in Motion</h2>
+        <div class="features-grid">
+            
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3>Interactive Learning</h3>
+                <p>Engage with constitutional law through gamified experiences.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v18"/>
+                        <rect x="6" y="21" width="12" height="3" />
+                        <path d="M6 3 L3 10h6L6 3z"/> 
+                        <path d="M18 3 L15 10h6L18 3z"/> 
+                        <path d="M6 10v6"/>
+                        <path d="M18 10v6"/>
+                    </svg>
+                </div>
+                <h3>Virtual Moot Court</h3>
+                <p>Practice arguments with AI judges and opponents.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </div>
+                <h3>Skill Assessment</h3>
+                <p>Get evaluated on your legal performance for recruiters.</p>
+            </div>
+            
+        </div>
+    </section>
+</div>
+{{end}}

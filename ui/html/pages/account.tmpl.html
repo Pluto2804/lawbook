@@ -1,0 +1,74 @@
+{{define "title"}}My Account{{end}}
+
+{{define "main"}}
+<div class="account-wrapper">
+    {{if .User}}
+    <div class="account-card">
+        
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <h1>{{.User.Name}}</h1>
+            <p>{{.User.Email}}</p>
+        </div>
+
+        <div class="profile-body">
+            
+            <div class="profile-row">
+                <span class="label">Account Role</span>
+                <span class="value">
+                    <span class="badge badge-role">{{.User.Role}}</span>
+                </span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Member Since</span>
+                <span class="value">{{humanDate .User.CreatedAt}}</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Verification Status</span>
+                <span class="value">
+                    {{if .User.EmailVerified}}
+                        <span class="badge badge-success">
+                            ✅ Verified
+                        </span>
+                    {{else}}
+                        <span class="badge badge-warning">
+                            ⚠️ Not Verified
+                        </span>
+                    {{end}}
+                </span>
+            </div>
+            
+        </div>
+
+        <div class="profile-actions">
+            <h3>Quick Actions</h3>
+            <div class="btn-group">
+                
+                {{if eq .User.Role "student"}}
+                    <a href="/student/dashboard" class="btn btn-secondary">Go to Dashboard</a>
+                    <a href="/moot/setup" class="btn btn-primary">Start Moot Court</a>
+                {{else if eq .User.Role "lawyer"}}
+                    <a href="/lawyer/dashboard" class="btn btn-secondary">Go to Dashboard</a>
+                    <a href="/moot/setup" class="btn btn-primary">Practice Session</a>
+                {{else if eq .User.Role "recruiter"}}
+                    <a href="/recruiter/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                {{end}}
+
+            </div>
+        </div>
+
+    </div>
+    {{else}}
+        <div class="account-card" style="text-align: center; padding: 40px;">
+            <p>User data not found. Please <a href="/user/login">log in</a>.</p>
+        </div>
+    {{end}}
+</div>
+{{end}}

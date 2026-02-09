@@ -1,0 +1,115 @@
+{{define "title"}}Moot Court Setup{{end}}
+
+{{define "main"}}
+<div class="moot-setup-container">
+    <h1>AI Moot Court Simulator</h1>
+    <p class="subtitle">Configure your virtual court session</p>
+    
+    <div class="setup-card">
+        <h2>Case Settings</h2>
+        
+        <div class="form-group">
+            <label for="case-type">Select Case Type:</label>
+            <select id="case-type" name="case-type" class="form-select">
+                <option value="">Choose a case type...</option>
+                <option value="constitutional">Constitutional Law</option>
+                <option value="criminal">Criminal Law</option>
+                <option value="civil">Civil Law</option>
+                <option value="corporate">Corporate Law</option>
+                <option value="family">Family Law</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Session Type:</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="session-type" value="single" checked>
+                    <div class="radio-content">
+                        <h4>Single Player (You + 2 AI)</h4>
+                        <p>You vs AI opponent with AI judge</p>
+                    </div>
+                </label>
+                
+                <label class="radio-option">
+                    <input type="radio" name="session-type" value="dual">
+                    <div class="radio-content">
+                        <h4>Dual Player (You + Friend + AI)</h4>
+                        <p>You vs real opponent with AI judge</p>
+                    </div>
+                </label>
+                
+                <label class="radio-option">
+                    <input type="radio" name="session-type" value="trio">
+                    <div class="radio-content">
+                        <h4>Trio (3 Users)</h4>
+                        <p>You + opponent + friend as judge</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="your-role">Your Role:</label>
+            <select id="your-role" name="your-role" class="form-select">
+                <option value="">Select your role...</option>
+                <option value="judge">Judge</option>
+                <option value="appellant">Appellant Counsel</option>
+                <option value="respondent">Respondent Counsel</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="difficulty">AI Difficulty Level:</label>
+            <select id="difficulty" name="difficulty" class="form-select">
+                <option value="easy">Easy - Beginner</option>
+                <option value="medium" selected>Medium - Standard</option>
+                <option value="hard">Hard - Expert</option>
+            </select>
+        </div>
+        
+        <div class="button-group">
+            <button class="btn btn-primary btn-lg" onclick="startMootSession()">
+                Start Session
+            </button>
+            <a href="/{{if eq .User.Role "student"}}student{{else}}lawyer{{end}}/dashboard" class="btn btn-secondary">
+                Cancel
+            </a>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <h3>How It Works</h3>
+        <ol>
+            <li>Select your case type and difficulty level</li>
+            <li>Choose session type (solo with AI or with real players)</li>
+            <li>Pick your role in the moot court</li>
+            <li>Present arguments and respond to questions</li>
+            <li>Receive AI-powered evaluation at the end</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+function startMootSession() {
+    const caseType = document.getElementById('case-type').value;
+    const sessionType = document.querySelector('input[name="session-type"]:checked').value;
+    const yourRole = document.getElementById('your-role').value;
+    const difficulty = document.getElementById('difficulty').value;
+    
+    if (!caseType) {
+        alert('Please select a case type');
+        return;
+    }
+    
+    if (!yourRole) {
+        alert('Please select your role');
+        return;
+    }
+    
+    // In a real implementation, this would create a session and redirect
+    alert('Moot Court session functionality coming soon!');
+    // window.location.href = '/moot/session?case=' + caseType + '&type=' + sessionType;
+}
+</script>
+{{end}}

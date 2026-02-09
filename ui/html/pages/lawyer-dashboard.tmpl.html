@@ -1,0 +1,65 @@
+{{define "title"}}Lawyer Dashboard{{end}}
+
+{{define "main"}}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Lawyer Dashboard</h1>
+        <p>Welcome back, {{.User.Name}}</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">Practice Sessions</span>
+            <span class="stat-value">0</span>
+            <span class="stat-subtext">Completed</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Performance Score</span>
+            <span class="stat-value">-</span>
+            <span class="stat-subtext">Not Yet Available</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Recruiter Views</span>
+            <span class="stat-value">0</span>
+            <span class="stat-subtext">Profile Views</span>
+        </div>
+    </div>
+
+    <div class="section-title">Professional Tools</div>
+
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div>
+                <div class="tool-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>Practice Session</h3>
+                <p>Sharpen your advocacy skills with AI-powered moot courts.</p>
+            </div>
+            <a href="/moot/setup" class="btn btn-primary">Start Practice</a>
+        </div>
+
+        <div class="tool-card">
+            <div>
+                <div class="tool-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <h3>Performance Analytics</h3>
+                <p>Review detailed evaluations of your argumentation style.</p>
+            </div>
+            <span class="btn-disabled">Coming Soon</span>
+        </div>
+
+        <div class="tool-card">
+            <div>
+                <div class="tool-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <h3>My Portfolio</h3>
+                <p>Manage the professional profile visible to recruiters.</p>
+            </div>
+            <span class="btn-disabled">Coming Soon</span>
+        </div>
+    </div>
+</div>
+{{end}}
