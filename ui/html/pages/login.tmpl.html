@@ -1,44 +1,43 @@
 {{define "title"}}Login{{end}}
 
 {{define "main"}}
-<div class="form-container">
-    <h2>Welcome Back</h2>
-    <p>Log in to access your Lawbook account</p>
-    
-    <form action="/user/login" method="POST" novalidate>
-        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+<div class="auth-wrapper">
+    <div class="auth-card">
         
-        {{with .Form}}
-            {{with .NonFieldErrors}}
-                <div class="error-message">
-                    {{range .}}
-                        <p>{{.}}</p>
-                    {{end}}
-                </div>
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Log in to continue to Lawbook</p>
+        </div>
+
+        <form action="/user/login" method="POST" novalidate>
+            <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+
+            {{range .Form.NonFieldErrors}}
+                <div class="error-message">{{.}}</div>
             {{end}}
-            
+
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{.Email}}" required autofocus>
-                {{with .FieldErrors.email}}
-                    <span class="field-error">{{.}}</span>
+                <label class="form-label">Email</label>
+                {{with .Form.FieldErrors.email}}
+                    <label class="error">{{.}}</label>
                 {{end}}
+                <input type="email" name="email" class="form-control" value="{{.Form.Email}}">
             </div>
-            
+
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                {{with .FieldErrors.password}}
-                    <span class="field-error">{{.}}</span>
+                <label class="form-label">Password</label>
+                {{with .Form.FieldErrors.password}}
+                    <label class="error">{{.}}</label>
                 {{end}}
+                <input type="password" name="password" class="form-control">
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-block">Log In</button>
-        {{end}}
-    </form>
-    
-    <p class="form-footer">
-        Don't have an account? <a href="/user/signup">Sign up here</a>
-    </p>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="/user/signup">Sign up here</a>
+        </div>
+    </div>
 </div>
 {{end}}
