@@ -2,7 +2,9 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
+	"net/url"
 
 	"lawbook/internal/models"
 	"lawbook/internal/validator"
@@ -146,16 +148,16 @@ func (app *application) userLoginPost(w http.ResponseWriter, req *http.Request) 
 	}
 
 	// Redirect based on role
-	switch user.Role {
-	case models.RoleStudent:
-		http.Redirect(w, req, "/student/dashboard", http.StatusSeeOther)
-	case models.RoleLawyer:
-		http.Redirect(w, req, "/lawyer/dashboard", http.StatusSeeOther)
-	case models.RoleRecruiter:
-		http.Redirect(w, req, "/recruiter/dashboard", http.StatusSeeOther)
-	default:
-		http.Redirect(w, req, "/", http.StatusSeeOther)
-	}
+	// Replace the switch block at the bottom of userLoginPost with this:
+
+	// Build redirect URL to Vercel app with user info
+	redirectURL := fmt.Sprintf(
+		"https://lawbookv2.vercel.app/auth-callback?name=%s&email=%s&role=%s",
+		url.QueryEscape(user.Name),
+		url.QueryEscape(user.Email),
+		url.QueryEscape(string(user.Role)),
+	)
+	http.Redirect(w, req, redirectURL, http.StatusSeeOther)
 }
 
 // ==================== USER LOGOUT ====================
@@ -222,4 +224,21 @@ func (app *application) mootCourtSetup(w http.ResponseWriter, req *http.Request)
 func (app *application) mootCourtSession(w http.ResponseWriter, req *http.Request) {
 	data := app.newTemplateData(req)
 	app.renderer(w, req, "moot-session.tmpl.html", http.StatusOK, data)
+}
+
+// API endpoint returning JSON user info (for React app to call)
+func (app *application) apiUserMe(w http.ResponseWriter, req *http.Request) {
+	userID := app.sessionManager.GetInt(req.Context(), "authenticatedUserId")
+	if userID == 0 {
+		w.Header().Set("Content-Type", "application/json")
+		http.Error(w, `{"error":"not authenticated"}`, http.StatusUnauthorized)
+		return
+	}
+	user, err := app.models.Users.Get(userID)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprintf(w, `{"name":"%s","email":"%s","role":"%s"}`, user.Name, user.Email, user.Role)
 }

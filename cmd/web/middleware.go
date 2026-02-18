@@ -5,13 +5,18 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/justinas/nosurf"
 	"lawbook/internal/models"
+
+	"github.com/justinas/nosurf"
 )
 
 // secureHeaders adds security headers to every response
 func secureHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "https://lawbookv2.vercel.app")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		w.Header().Set("Content-Security-Policy", "default-src 'self'; style-src 'self' fonts.googleapis.com; font-src fonts.gstatic.com")
 		w.Header().Set("Referrer-Policy", "origin-when-cross-origin")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
@@ -50,7 +55,7 @@ func (app *application) requireAuthentication(next http.Handler) http.Handler {
 			http.Redirect(w, req, "/user/login", http.StatusSeeOther)
 			return
 		}
-		
+
 		// Tell browser not to cache pages for authenticated users
 		w.Header().Add("Cache-Control", "no-store")
 		next.ServeHTTP(w, req)
@@ -66,11 +71,11 @@ func noSurf(next http.Handler) http.Handler {
 		Secure:   true,
 		SameSite: http.SameSiteLaxMode,
 	})
-	
+
 	csrfHandler.SetFailureHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "CSRF token validation failed: "+nosurf.Reason(r).Error(), http.StatusBadRequest)
 	}))
-	
+
 	return csrfHandler
 }
 
@@ -103,7 +108,7 @@ func (app *application) requireRole(role models.UserRole) func(http.Handler) htt
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 			userID := app.sessionManager.GetInt(req.Context(), "authenticatedUserId")
-			
+
 			user, err := app.models.Users.Get(userID)
 			if err != nil {
 				app.serverError(w, err)
@@ -126,7 +131,7 @@ func (app *application) requireAnyRole(roles ...models.UserRole) func(http.Handl
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 			userID := app.sessionManager.GetInt(req.Context(), "authenticatedUserId")
-			
+
 			user, err := app.models.Users.Get(userID)
 			if err != nil {
 				app.serverError(w, err)
