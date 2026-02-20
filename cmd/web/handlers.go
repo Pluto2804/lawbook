@@ -152,7 +152,7 @@ func (app *application) userLoginPost(w http.ResponseWriter, req *http.Request) 
 
 	// Build redirect URL to Vercel app with user info
 	redirectURL := fmt.Sprintf(
-		"https://lawbookv2.vercel.app/auth-callback?name=%s&email=%s&role=%s",
+		"http://localhost:5173/auth-callback?name=%s&email=%s&role=%s",
 		url.QueryEscape(user.Name),
 		url.QueryEscape(user.Email),
 		url.QueryEscape(string(user.Role)),
