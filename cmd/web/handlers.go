@@ -152,7 +152,7 @@ func (app *application) userLoginPost(w http.ResponseWriter, req *http.Request) 
 
 	// Build redirect URL to Vercel app with user info
 	redirectURL := fmt.Sprintf(
-		"http://localhost:5173/auth-callback?name=%s&email=%s&role=%s",
+		"https://nimble-cheesecake-7c8fcd.netlify.app/auth-callback?name=%s&email=%s&role=%s",
 		url.QueryEscape(user.Name),
 		url.QueryEscape(user.Email),
 		url.QueryEscape(string(user.Role)),
