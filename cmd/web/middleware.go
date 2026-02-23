@@ -13,7 +13,7 @@ import (
 // secureHeaders adds security headers to every response
 func secureHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "https://lawbookv2.vercel.app")
+		w.Header().Set("Access-Control-Allow-Origin", "https://mylawbook.in")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
