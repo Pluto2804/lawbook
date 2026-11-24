@@ -46,6 +46,8 @@ func (app *application) routes() http.Handler {
 	// ==================== PUBLIC ROUTES ====================
 	router.Handler(http.MethodGet, "/", dynamic.ThenFunc(app.home))
 	router.Handler(http.MethodGet, "/about", dynamic.ThenFunc(app.about))
+	// Add under PUBLIC ROUTES
+	router.Handler(http.MethodGet, "/api/user/me", dynamic.ThenFunc(app.apiUserMe))
 
 	// Authentication routes
 	router.Handler(http.MethodGet, "/user/signup", dynamic.ThenFunc(app.userSignup))
