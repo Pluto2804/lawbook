@@ -38,7 +38,11 @@ func openDB(dsn string) (*sql.DB, error) {
 }
 
 func main() {
-	addr := flag.String("addr", ":4000", "HTTP network address")
+	defaultAddr := ":4000"
+	if port := os.Getenv("PORT"); port != "" {
+		defaultAddr = ":" + port
+	}
+	addr := flag.String("addr", defaultAddr, "HTTP network address")
 	dsn := flag.String("dsn", os.Getenv("LAWBOOK_DB_DSN"), "MySQL data source name")
 	flag.Parse()
 
